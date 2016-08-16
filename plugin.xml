@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-fox" version="0.1.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>fox</name>
+    <js-module name="fox" src="www/fox.js">
+        <clobbers target="fox" />
+    </js-module>
+    <platform name="android">
+      <config-file target="res/xml/config.xml" parent="/*">
+          <feature name="fox">
+              <param name="android-package" value="com.github.betchi.fox.Fox"/> <!-- 実装ファイルのクラス（フルパス） -->
+          </feature>
+      </config-file>
+
+      <config-file target="AndroidManifest.xml" parent="/*">
+        <!--
+        <application android:hardwareAccelerated="true" android:icon="@drawable/icon" android:label="@string/app_name" android:supportsRtl="true">
+          <receiver android:exported="true" android:name="jp.appAdForce.android.InstallReceiver" >
+              <intent-filter>
+                  <action android:name="com.android.vending.INSTALL_REFERRER" />
+              </intent-filter>
+          </receiver>
+
+          <meta-data android:name="APPADFORCE_APP_ID" android:value="[APP_ID]" />
+          <meta-data android:name="APPADFORCE_SERVER_URL" android:value="[SERVER_URL]" />
+        </application>
+        -->
+        <uses-permission android:name="android.permission.INTERNET"/>
+        <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+        <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+        <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+      </config-file>
+
+      <source-file src="src/android/Fox.java" target-dir="src/com/github/betchi/fox" />
+      <source-file src="src/android/libs/AppAdForce_3.2.0.jar" target-dir="libs" />
+    </platform>
+</plugin>
